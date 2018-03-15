@@ -7,10 +7,11 @@ if(isset($_POST['login'])){
     $query="SELECT * FROM details where username='$username' AND password ='$password'";
     $execute=mysqli_query($con, $query);
 
-    if(mysqli_num_rows($execute)>0)
+    if($da=mysqli_fetch_array($execute))
     {
         session_start();
-        $_SESSION['username']='admin';
+        $_SESSION['username']=$username;
+        $_SESSION['category']=$da['category'];
         echo $_SESSION['username'];
         header('Location:admin_home.php');
     }
@@ -33,7 +34,7 @@ if(isset($_POST['login'])){
         <div class="card grey lighten-4">
             <div class="card-content">
                 <div class="row">
-                    <form class="col s10 offset-s2" method="post" action="login_admin.php">
+                    <form class="col s10 offset-s2" method="post" action="login.php">
                         <div class="row">
                             <div class="input-field col s12 pull-s1">
                                 <input id="username" type="text" class="validate" name="username">
