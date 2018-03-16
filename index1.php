@@ -1,15 +1,15 @@
-gcghchg
+
 <?php
 
 include_once 'header.php';
 
 
     $uid = $_POST['adhar'];
-    echo $uid;
+
     $text = $_POST['problem'];
     $insert1 = "Insert into details1 (`uid`,`problem`,`status`) values('$uid','$text','pending')";
     if ($qry=mysqli_query($con, $insert1)) {
-        echo "succcessfull";
+        echo "successfull entered";
     }
     else{
         echo mysqli_error($con);
@@ -61,6 +61,8 @@ include_once 'header.php';
             echo "Sorry, there was an error uploading your file.";
         }
     }
+
+    echo ("Your problem Unique id is ".$sno);
 
 
 
