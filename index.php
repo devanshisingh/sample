@@ -8,7 +8,7 @@
 
 </head>
 <body>
-
+<a href="login.php">admin login</a>
 <form method="POST" action="index1.php" enctype="multipart/form-data">
     <input type="number" placeholder="Adhar" name="adhar" id="adhar" required>
     <input type="text" placeholder="State The Problem" name="problem" id="problem" required>

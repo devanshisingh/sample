@@ -23,7 +23,7 @@ if(isset($_POST['login'])){
 
 <nav class="teal lighten-3">
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Student Feedback Portal</a>
+        <a href="#" class="brand-logo center">admin login</a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
         </ul>
     </div>
