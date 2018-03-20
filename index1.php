@@ -21,7 +21,8 @@ use Twilio\Rest\Client;
         $text = $_POST['problem'];
         $insert1 = "Insert into details1 (`uid`,`problem`,`status`) values('$uid','$text','pending')";
         if ($qry = mysqli_query($con, $insert1)) {
-            echo "successfull entered";
+            echo "<div class=\"jumbotron text-center\">
+                     <h1><center>Thank you!</center></h1><h2><center>Your request is initated soon!</center></h2></h1>";
         } else {
             echo mysqli_error($con);
         }
@@ -53,14 +54,14 @@ use Twilio\Rest\Client;
         }else{
             imagegif( $dst, $target_file );
         }*/
-        if($_FILES['file']['size'] > 10485760) { //10 MB (size is also in bytes)
+        if($_FILES['fileToUpload']['size'] > 10485760) { //10 MB (size is also in bytes)
             // File too big
         } else {
             // File within size restrictions
         }
 
         if ($check !== false && $_FILES['fileToUpload']['size'] < 10485760) {
-            echo "File is an image - " . $check["mime"] . ".";
+            //echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
         } else {
             echo "File is not an image.";
@@ -80,7 +81,7 @@ use Twilio\Rest\Client;
 // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
+                //echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
                 $qw = "Update details1 set fileupload='$target_file' where sno='$sno'";
                 $qw1 = mysqli_query($con, $qw);
             } else {
@@ -88,7 +89,8 @@ use Twilio\Rest\Client;
             }
         }
 
-        echo("Your problem Unique id is " . $sno);
+
+        echo("<h5 style='color:#00CCCC; text-align: center; font-style: italic` class='\display-3'\><center>Your problem Unique id is ". $sno."</center></h5> " );
 
         $consumerKey = "KmJFnkIkb81zEaudlJBHne6UZ";
         $consumerSecret = "W76k6DZUUDFHX9Spv1SIAjEVuoCYY9hXTiW5LzwNfJp0d467y5";
