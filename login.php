@@ -1,4 +1,4 @@
-<?php
+ <?php
 include_once 'header.php';
 if(isset($_POST['login'])){
     $username=$_POST['username'];

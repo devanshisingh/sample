@@ -20,14 +20,16 @@
 <?php
 include_once 'header.php';
 session_start();
+echo"<a href='logout.php'> logout </a>";
 if(!(isset($_SESSION['username']))){
     header('Location:login.php');
 }
 else
 {
     if($_SESSION['category']=='N') {
+
         echo "Normal Employee";
-        $qu1 = "SELECT * FROM details1 where status='pending'";
+        $qu1 = "SELECT * FROM details1 where status='pending' ORDER BY date ASC";
         $qry_execute = mysqli_query($con, $qu1);
         echo mysqli_error($con);
         $i = 0;
@@ -40,7 +42,7 @@ else
             $path = $da['fileupload'];
             echo("<td>" . $i . "</td>");
             echo("<td>" . $problem . "</td>");
-            echo("<td><img src='$path'></td>");
+            echo("<td><img src='$path' height='42' width='42'></td>");
             echo("<td><button name='pending' id='pending' onclick='change($sno)'></button></td>");
             echo("</tr>");
 
@@ -49,7 +51,7 @@ else
         echo("</table>");
 
         echo("closed issue");
-        $qu11 = "SELECT * FROM details1 where status='closed'";
+        $qu11 = "SELECT * FROM details1 where status='closed' ORDER BY date ASC";
         $qry_execute1 = mysqli_query($con, $qu11);
         echo mysqli_error($con);
         $i = 0;
@@ -62,7 +64,7 @@ else
             $path = $da1['fileupload'];
             echo("<td>" . $i . "</td>");
             echo("<td>" . $problem . "</td>");
-            echo("<td><img src='$path'></td>");
+            echo("<td><img src='$path' height='42' width='42'></td>");
 
             echo("</tr>");
 
@@ -87,7 +89,7 @@ else
         $newdate = strtotime ( '-7 day' , strtotime ( $date ) ) ;
         $newdate = date ( 'Y-m-d H:i:s' , $newdate );
         echo $newdate;
-        $qu11 = "SELECT * FROM details1 where status='pending' AND date<'$newdate'" ;
+        $qu11 = "SELECT * FROM details1 where status='pending' AND date<'$newdate' ORDER BY date ASC" ;
         $qry_execute1 = mysqli_query($con, $qu11);
         echo mysqli_error($con);
         $i = 0;
@@ -100,7 +102,28 @@ else
             $path = $da1['fileupload'];
             echo("<td>" . $i . "</td>");
             echo("<td>" . $problem . "</td>");
-            echo("<td><img src='$path'></td>");
+            echo("<td><img src='$path' height='42' width='42'></td>");
+
+            echo("</tr>");
+
+        }
+        echo("</table>");
+
+        echo("closed issue");
+        $qu11 = "SELECT * FROM details1 where status='closed' ORDER BY date ASC";
+        $qry_execute1 = mysqli_query($con, $qu11);
+        echo mysqli_error($con);
+        $i = 0;
+        echo("<table>");
+        while ($da1 = mysqli_fetch_array($qry_execute1)) {
+            echo("<tr>");
+            $i++;
+            $problem = $da1['problem'];
+            $sno = $da1['sno'];
+            $path = $da1['fileupload'];
+            echo("<td>" . $i . "</td>");
+            echo("<td>" . $problem . "</td>");
+            echo("<td><img src='$path' height='42' width='42'></td>");
 
             echo("</tr>");
 
